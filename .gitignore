@@ -1,0 +1,26 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Virtual environments
+.env
+.venv/
+venv/
+
+# Data
+data/raw/
+data/processed/
+
+# Results
+results/*.joblib
+results/*.pkl
+results/*.png
+
+# Mac OS
+.DS_Store
+
+# Logs
+*.log
