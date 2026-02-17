@@ -17,6 +17,7 @@ LABEL_CANDIDATES = (
     "is_phishing",
     "phishing",
     "y",
+    "status",
 )
 
 
@@ -116,3 +117,10 @@ def prepare_splits(
     )
 
     return X_train, X_test, y_train, y_test
+
+
+def preprocessing(
+    dataset_path: str = "data/processed/dataset.csv",
+) -> Tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
+    """Backward-compatible alias for data preprocessing and train/test splitting."""
+    return prepare_splits(dataset_path)

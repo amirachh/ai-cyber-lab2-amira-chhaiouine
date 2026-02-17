@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import accuracy_score, confusion_matrix, f1_score, precision_score, recall_score
 
-from src.data import preprocessing
+from src import data
 from src.utils import save_json, save_plot
 
 
@@ -56,7 +56,8 @@ def evaluate() -> Dict[str, float]:
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
     model = joblib.load(MODEL_PATH)
-    X_train, X_test, y_train, y_test = _unpack_preprocessing_output(preprocessing())
+    preprocessing_fn = getattr(data, "preprocessing", data.prepare_splits)
+    X_train, X_test, y_train, y_test = _unpack_preprocessing_output(preprocessing_fn())
 
     y_pred = model.predict(X_test)
     pos_label = _resolve_pos_label(y_test)

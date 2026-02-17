@@ -5,7 +5,7 @@ from pathlib import Path
 import joblib
 from sklearn.linear_model import LogisticRegression
 
-from src.data import preprocessing
+from src import data
 from src.utils import ensure_directory
 
 
@@ -19,8 +19,10 @@ def _extract_training_split(preprocessed_data):
         return preprocessed_data["X_train"], preprocessed_data["y_train"]
 
     if isinstance(preprocessed_data, (tuple, list)):
-        if len(preprocessed_data) >= 2:
+        if len(preprocessed_data) == 2:
             return preprocessed_data[0], preprocessed_data[1]
+        if len(preprocessed_data) >= 3:
+            return preprocessed_data[0], preprocessed_data[2]
         raise ValueError("preprocessing() must return at least X_train and y_train.")
 
     raise TypeError(
@@ -30,7 +32,8 @@ def _extract_training_split(preprocessed_data):
 
 def train_model():
     """Train and persist a Logistic Regression model."""
-    preprocessed_data = preprocessing()
+    preprocessing_fn = getattr(data, "preprocessing", data.prepare_splits)
+    preprocessed_data = preprocessing_fn()
     X_train, y_train = _extract_training_split(preprocessed_data)
 
     model = LogisticRegression(max_iter=1000, class_weight="balanced")
