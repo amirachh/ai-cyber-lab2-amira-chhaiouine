@@ -18,7 +18,6 @@ data/processed/*
 # Results
 results/*.joblib
 results/*.pkl
-results/*.png
 
 # Mac OS
 .DS_Store
