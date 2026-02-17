@@ -19,8 +19,10 @@ def _extract_training_split(preprocessed_data):
         return preprocessed_data["X_train"], preprocessed_data["y_train"]
 
     if isinstance(preprocessed_data, (tuple, list)):
-        if len(preprocessed_data) >= 2:
+        if len(preprocessed_data) == 2:
             return preprocessed_data[0], preprocessed_data[1]
+        if len(preprocessed_data) >= 3:
+            return preprocessed_data[0], preprocessed_data[2]
         raise ValueError("preprocessing() must return at least X_train and y_train.")
 
     raise TypeError(
