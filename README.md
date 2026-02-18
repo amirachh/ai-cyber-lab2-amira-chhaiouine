@@ -1,6 +1,4 @@
-# AI Phishing URL Detection
-
-> A reproducible end-to-end machine learning starter for phishing URL detection in cybersecurity.
+# AI Cyber Lab 2 — Phishing URL Detection
 
 ## 1. Project Description
 This project trains and evaluates a **binary phishing detector** using URL- and webpage-derived features.  
@@ -33,7 +31,7 @@ The label is converted to binary (`0` = legitimate, `1` = phishing) before train
 ```bash
 # 1) Clone repository
 git clone <your-repo-url>
-cd <project-folder>
+cd ai-cyber-lab2-amira-chhaiouine
 
 # 2) Create and activate a virtual environment
 python -m venv .venv
